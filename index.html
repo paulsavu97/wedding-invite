@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nuestro gran día</title>
+
+  <!-- Tipografías opcionales (Google Fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+
+<body>
+  <header class="topbar">
+    <nav class="nav">
+      <a href="#cuenta-atras">Cuenta atrás</a>
+      <a href="#donde">Dónde y cuándo</a>
+      <a href="#alojamiento">Alojamiento</a>
+      <a href="#galeria">Galería</a>
+      <a class="btn" href="#rsvp">Confirmación</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="hero__inner">
+      <p class="kicker">C &amp; M</p>
+      <h1>Nuestro gran día</h1>
+
+      <div class="hero__photos">
+        <figure class="pill">
+          <img src="assets/img/foto1.jpg" alt="Foto 1">
+        </figure>
+        <figure class="pill">
+          <img src="assets/img/foto2.jpg" alt="Foto 2">
+        </figure>
+        <figure class="pill">
+          <img src="assets/img/foto3.jpg" alt="Foto 3">
+        </figure>
+      </div>
+
+      <p class="subtitle">Nos hace ilusión celebrarlo contigo.</p>
+
+      <div class="hero__cta">
+        <a class="btn" href="#rsvp">Confirmar asistencia</a>
+        <a class="link" href="#cuenta-atras">Ver detalles</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CUENTA ATRÁS -->
+  <section class="section" id="cuenta-atras">
+    <div class="container">
+      <h2>Cuenta atrás</h2>
+      <p class="muted">Estamos deseando disfrutar de ese día con todos vosotros.</p>
+
+      <div class="countdown" aria-live="polite">
+        <div class="countdown__cell">
+          <div class="countdown__num" id="dd">—</div>
+          <div class="countdown__lbl">Días</div>
+        </div>
+        <div class="countdown__cell">
+          <div class="countdown__num" id="hh">—</div>
+          <div class="countdown__lbl">Horas</div>
+        </div>
+        <div class="countdown__cell">
+          <div class="countdown__num" id="mm">—</div>
+          <div class="countdown__lbl">Min</div>
+        </div>
+        <div class="countdown__cell">
+          <div class="countdown__num" id="ss">—</div>
+          <div class="countdown__lbl">Seg</div>
+        </div>
+      </div>
+
+      <div class="card note">
+        <p><strong>Fecha:</strong> <span id="prettyDate">—</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DÓNDE Y CUÁNDO -->
+  <section class="section" id="donde">
+    <div class="container">
+      <h2>Dónde y cuándo</h2>
+
+      <div class="grid2">
+        <div class="card">
+          <h3>📍 Lugar</h3>
+          <p><strong>Bodega / Finca</strong></p>
+          <p class="muted">Calle, ciudad, provincia</p>
+          <a class="btn small" id="mapsLink" target="_blank" rel="noopener">Abrir en Google Maps</a>
+        </div>
+
+        <div class="card">
+          <h3>⏰ Hora</h3>
+          <p><strong>Ceremonia:</strong> 13:00</p>
+          <p class="muted">Te recomendamos llegar con 15–20 min de margen.</p>
+          <a class="btn small ghost" href="#rsvp">Confirmar asistencia</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>🚌 Transporte (opcional)</h3>
+        <p class="muted">
+          Aquí puedes explicar si habrá autobuses, parking, etc.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALOJAMIENTO -->
+  <section class="section" id="alojamiento">
+    <div class="container">
+      <h2>Alojamiento</h2>
+      <p class="muted">Si necesitas hacer noche, te dejamos algunas opciones:</p>
+
+      <div class="stack">
+        <div class="card">
+          <h3>Hotel 1</h3>
+          <p class="muted">Dirección — Teléfono — Web</p>
+        </div>
+        <div class="card">
+          <h3>Hotel 2</h3>
+          <p class="muted">Dirección — Teléfono — Web</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERÍA -->
+  <section class="section" id="galeria">
+    <div class="container">
+      <h2>Galería</h2>
+      <p class="muted">Unas fotos nuestras 🙂</p>
+
+      <div class="gallery">
+        <img src="assets/img/foto1.jpg" alt="Foto 1">
+        <img src="assets/img/foto2.jpg" alt="Foto 2">
+        <img src="assets/img/foto3.jpg" alt="Foto 3">
+        <img src="assets/img/foto4.jpg" alt="Foto 4">
+      </div>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section class="section" id="rsvp">
+    <div class="container">
+      <h2>Confirmación</h2>
+      <p class="muted">
+        En GitHub Pages no hay backend (PHP), así que el formulario lo enviamos a un servicio externo.
+      </p>
+
+      <!-- Opción A (recomendada): Formspree / Getform / etc -->
+      <!-- Sustituye action por tu endpoint -->
+      <form class="form card" id="rsvpForm" method="POST" action="https://formspree.io/f/TU_ID">
+        <div class="field">
+          <label>Nombre</label>
+          <input name="nombre" required />
+        </div>
+
+        <div class="field">
+          <label>Email</label>
+          <input name="email" type="email" required />
+        </div>
+
+        <div class="field">
+          <label>Teléfono</label>
+          <input name="telefono" inputmode="tel" />
+        </div>
+
+        <div class="field">
+          <label>¿Asistirás?</label>
+          <select name="asistencia" required>
+            <option value="">Selecciona…</option>
+            <option>Sí</option>
+            <option>No</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Alergias / intolerancias</label>
+          <input name="alergias" placeholder="Opcional" />
+        </div>
+
+        <div class="field">
+          <label>Comentarios</label>
+          <textarea name="comentarios" rows="3" placeholder="Opcional"></textarea>
+        </div>
+
+        <button class="btn" type="submit">Enviar confirmación</button>
+        <p class="muted tiny" id="formMsg"></p>
+      </form>
+
+      <div class="card note">
+        <p class="muted tiny">
+          Consejo: si quieres algo 100% gratis y simple, también puedes usar un <strong>Google Form</strong>
+          y poner el enlace aquí como botón.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="muted tiny">Hecho con ❤️ — C&amp;M</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
