@@ -86,8 +86,8 @@ h3{ font-size: 1.35rem; }
   flex-wrap: wrap;
 }
 .pill{
-  width: 110px;
-  height: 170px;
+  width: 130px;
+  height: 190px;
   border-radius: 999px;
   overflow: hidden;
   background: #eee;
