@@ -10,7 +10,7 @@ const WEDDING = {
   banquet: {
     name: "Finca La Cervalera (Tarancón)",
     address: "Carretera A-3, km 79, Camino La Cervalera s/n, 16400 Tarancón (Cuenca)",
-    mapsUrl: "https://maps.app.goo.gl/wrc3Svm2c3FTDTQf6"
+    mapsUrl: "https://www.google.com/maps/place/Finca+La+Cervalera/@40.0243429,-3.0319603,717m/data=!3m2!1e3!4b1!4m6!3m5!1s0xd4286b351048cb3:0x2abb45ef5ffcded8!8m2!3d40.0243429!4d-3.0319603!16s%2Fg%2F11b638_tz2?entry=ttu&g_ep=EgoyMDI2MDEyOC4wIKXMDSoKLDEwMDc5MjA3M0gBUAM%3D"
   }
 };
 
