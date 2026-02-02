@@ -4,13 +4,13 @@ const WEDDING = {
 
   ceremony: {
     name: "Iglesia Virgen de la Piedad",
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Iglesia+Virgen+de+la+Piedad+Taranc%C3%B3n"
+    mapsUrl: "https://maps.app.goo.gl/SDSN7cr8CDLzNRV47"
   },
 
   banquet: {
     name: "Finca La Cervalera (Tarancón)",
     address: "Carretera A-3, km 79, Camino La Cervalera s/n, 16400 Tarancón (Cuenca)",
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=La+Cervalera+Taranc%C3%B3n"
+    mapsUrl: "https://maps.app.goo.gl/wrc3Svm2c3FTDTQf6"
   }
 };
 
