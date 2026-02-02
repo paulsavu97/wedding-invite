@@ -135,7 +135,7 @@
 
       <!-- Opción A (recomendada): Formspree / Getform / etc -->
       <!-- Sustituye action por tu endpoint -->
-      <form class="form card" id="rsvpForm" method="POST" action="https://formspree.io/f/TU_ID">
+      <form class="form card" id="rsvpForm" method="POST" action="https://script.google.com/macros/s/AKfycbyxeyYtucxwy56KPHgN5gx_CVw8nuu0_ilZ1OsDDToy66XPyFIyielN_7zh2dLychlllg/exec">
         <div class="field">
           <label>Nombre</label>
           <input name="nombre" required />
@@ -178,6 +178,10 @@
           <label>Comentarios</label>
           <textarea name="comentarios" rows="3" placeholder="Opcional"></textarea>
         </div>
+
+        <!-- Anti-spam (no tocar) -->
+        <input type="text" name="_gotcha" autocomplete="off" tabindex="-1" style="display:none">
+
 
         <button class="btn" type="submit">Enviar confirmación</button>
         <p class="muted tiny" id="formMsg"></p>

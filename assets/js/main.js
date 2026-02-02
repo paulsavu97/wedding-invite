@@ -73,32 +73,66 @@ function tick(){
 tick();
 setInterval(tick, 1000);
 
-// ====== Form UX (sin backend propio) ======
+// ====== Form UX (Google Sheets via Apps Script) ======
 const form = $("rsvpForm");
 const msg = $("formMsg");
 
+function setDisabled(disabled) {
+  const btn = form?.querySelector('button[type="submit"]');
+  if (btn) btn.disabled = disabled;
+}
+
+// Mostrar/ocultar "parada_autobus" según transporte
+const transporteSel = document.querySelector('select[name="transporte"]');
+const paradaInput = document.querySelector('input[name="parada_autobus"]');
+const paradaField = paradaInput ? paradaInput.closest(".field") : null;
+
+function updateParadaField(){
+  if (!transporteSel || !paradaField || !paradaInput) return;
+  const isBus = transporteSel.value === "Autobús";
+  paradaField.style.display = isBus ? "grid" : "none";
+  if (!isBus) paradaInput.value = "";
+}
+if (transporteSel) {
+  transporteSel.addEventListener("change", updateParadaField);
+  updateParadaField();
+}
+
 if (form && msg) {
   form.addEventListener("submit", async (e) => {
-    if (!form.action.includes("formspree.io")) return;
-
     e.preventDefault();
+
     msg.textContent = "Enviando…";
+    setDisabled(true);
 
     try {
+      const fd = new FormData(form);
+      // Extra útil: registrar user agent (para depurar spam)
+      fd.append("user_agent", navigator.userAgent);
+
       const res = await fetch(form.action, {
         method: "POST",
-        body: new FormData(form),
-        headers: { "Accept": "application/json" }
+        body: fd
       });
 
-      if (res.ok) {
+      // Intentamos leer JSON (Apps Script responde JSON)
+      let data = null;
+      try { data = await res.json(); } catch {}
+
+      if (res.ok && (!data || data.ok)) {
         form.reset();
+        updateParadaField();
         msg.textContent = "¡Gracias! Confirmación enviada.";
       } else {
-        msg.textContent = "No se pudo enviar. Prueba de nuevo o contáctanos por WhatsApp.";
+        const errMsg = (data && data.error) ? data.error : "No se pudo enviar. Prueba de nuevo.";
+        msg.textContent = errMsg;
       }
-    } catch {
+
+    } catch (err) {
       msg.textContent = "Error de red. Inténtalo otra vez.";
+    } finally {
+      setDisabled(false);
     }
   });
 }
+
