@@ -1,16 +1,44 @@
 // ====== CONFIG (edita esto) ======
 const WEDDING = {
-  // Fecha/hora en tu zona (Europe/Madrid). Ej: "2026-10-19T13:00:00+02:00"
-  dateISO: "2026-10-19T13:00:00+02:00",
-  placeName: "Bodega Finca Los Aljibes",
-  mapsUrl: "https://www.google.com/maps?q=Bodega+Finca+Los+Aljibes"
+  // Ceremonia: 27 junio 2026 a las 13:00 (horario peninsular, verano = +02:00)
+  dateISO: "2026-06-27T13:00:00+02:00",
+
+  ceremony: {
+    name: "Iglesia Virgen de la Piedad",
+    // OJO: si la iglesia NO está en Tarancón, cambia "Tarancón" por el pueblo correcto
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Iglesia+Virgen+de+la+Piedad+Taranc%C3%B3n"
+  },
+
+  banquet: {
+    name: "Finca La Cervalera (Tarancón)",
+    address: "Carretera A-3, km 79, Camino La Cervalera s/n, 16400 Tarancón (Cuenca)",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=La+Cervalera+Taranc%C3%B3n"
+  },
+
+  // Link “principal” (lo usabas en el botón)
+  mapsUrl: "https://www.google.com/maps/search/?api=1&query=Iglesia+Virgen+de+la+Piedad+Taranc%C3%B3n"
 };
 
 // ====== Countdown ======
 const $ = (id) => document.getElementById(id);
 const target = new Date(WEDDING.dateISO);
 
+// Si mantienes un botón “principal”
 $("mapsLink").href = WEDDING.mapsUrl;
+
+// Si añades botones separados (recomendado)
+const cLink = document.getElementById("mapsCeremony");
+const bLink = document.getElementById("mapsBanquet");
+if (cLink) cLink.href = WEDDING.ceremony.mapsUrl;
+if (bLink) bLink.href = WEDDING.banquet.mapsUrl;
+
+// Rellenar textos si existen
+const cName = document.getElementById("ceremonyName");
+const bName = document.getElementById("banquetName");
+const bAddr = document.getElementById("banquetAddr");
+if (cName) cName.textContent = WEDDING.ceremony.name;
+if (bName) bName.textContent = WEDDING.banquet.name;
+if (bAddr) bAddr.textContent = WEDDING.banquet.address;
 
 const pretty = new Intl.DateTimeFormat("es-ES", {
   weekday: "long", year: "numeric", month: "long", day: "2-digit",

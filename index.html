@@ -83,34 +83,35 @@
   </section>
 
   <!-- DÓNDE Y CUÁNDO -->
-  <section class="section" id="donde">
+    <section class="section" id="donde">
     <div class="container">
-      <h2>Dónde y cuándo</h2>
+        <h2>Dónde y cuándo</h2>
 
-      <div class="grid2">
+        <div class="grid2">
         <div class="card">
-          <h3>📍 Lugar</h3>
-          <p><strong>Bodega / Finca</strong></p>
-          <p class="muted">Calle, ciudad, provincia</p>
-          <a class="btn small" id="mapsLink" target="_blank" rel="noopener">Abrir en Google Maps</a>
+            <h3>⛪ Ceremonia</h3>
+            <p><strong id="ceremonyName">Iglesia Virgen de la Piedad</strong></p>
+            <p class="muted"><strong>Hora:</strong> 13:00</p>
+            <a class="btn small" id="mapsCeremony" target="_blank" rel="noopener">Abrir en Google Maps</a>
         </div>
 
         <div class="card">
-          <h3>⏰ Hora</h3>
-          <p><strong>Ceremonia:</strong> 13:00</p>
-          <p class="muted">Te recomendamos llegar con 15–20 min de margen.</p>
-          <a class="btn small ghost" href="#rsvp">Confirmar asistencia</a>
+            <h3>🥂 Banquete</h3>
+            <p><strong id="banquetName">Finca La Cervalera (Tarancón)</strong></p>
+            <p class="muted" id="banquetAddr">—</p>
+            <a class="btn small" id="mapsBanquet" target="_blank" rel="noopener">Abrir en Google Maps</a>
         </div>
-      </div>
+        </div>
 
-      <div class="card">
-        <h3>🚌 Transporte (opcional)</h3>
+        <div class="card">
+        <h3>🚌 Transporte</h3>
         <p class="muted">
-          Aquí puedes explicar si habrá autobuses, parking, etc.
+            Para organizarnos, en la confirmación puedes indicar si necesitas autobús o vas en coche.
         </p>
-      </div>
+        <a class="btn small ghost" href="#rsvp">Confirmar asistencia</a>
+        </div>
     </div>
-  </section>
+    </section>
 
   <!-- ALOJAMIENTO -->
   <section class="section" id="alojamiento">
@@ -182,6 +183,21 @@
         </div>
 
         <div class="field">
+            <label>Transporte</label>
+            <select name="transporte" required>
+                <option value="">Selecciona…</option>
+                <option value="Coche">Iré en coche</option>
+                <option value="Autobús">Necesito autobús</option>
+            </select>
+            </div>
+
+            <div class="field">
+            <label>Si necesitas autobús, ¿desde dónde?</label>
+            <input name="parada_autobus" placeholder="Ej: Madrid / Tarancón / otro" />
+        </div>
+
+
+        <div class="field">
           <label>Alergias / intolerancias</label>
           <input name="alergias" placeholder="Opcional" />
         </div>
@@ -203,6 +219,23 @@
       </div>
     </div>
   </section>
+
+    <section class="section" id="fotos">
+        <div class="container">
+            <h2>Sube tus fotos</h2>
+            <p class="muted">Ayúdanos a reunir recuerdos del día 😊</p>
+
+            <div class="card">
+            <a class="btn" href="PEGA_AQUI_TU_LINK_DE_DRIVE" target="_blank" rel="noopener">
+                Subir fotos a la carpeta
+            </a>
+            <p class="muted tiny" style="margin-top:10px;">
+                Si el enlace no abre, copia y pega en tu navegador.
+            </p>
+            </div>
+        </div>
+    </section>
+
 
   <footer class="footer">
     <div class="container">
