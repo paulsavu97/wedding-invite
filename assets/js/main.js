@@ -107,15 +107,18 @@ if (form && msg) {
 
     try {
       const fd = new FormData(form);
-      // Extra útil: registrar user agent (para depurar spam)
       fd.append("user_agent", navigator.userAgent);
+
+      // Convertimos a x-www-form-urlencoded (evita preflight/CORS)
+      const body = new URLSearchParams();
+      for (const [k, v] of fd.entries()) body.append(k, v);
 
       const res = await fetch(form.action, {
         method: "POST",
-        body: fd
+        headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+        body
       });
 
-      // Intentamos leer JSON (Apps Script responde JSON)
       let data = null;
       try { data = await res.json(); } catch {}
 
