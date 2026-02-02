@@ -19,7 +19,7 @@ body{
 }
 
 h1,h2,h3{
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Playfair Display", serif;
   letter-spacing: .2px;
   margin: 0 0 .35rem;
 }
@@ -67,7 +67,7 @@ h3{ font-size: 1.35rem; }
   text-align: center;
 }
 .kicker{
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Libre Baskerville", serif;
   letter-spacing: .3em;
   text-transform: uppercase;
   color: var(--muted);
@@ -159,7 +159,8 @@ h3{ font-size: 1.35rem; }
   padding: 14px 10px;
 }
 .countdown__num{
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Bodoni Moda", serif;
+
   font-size: 38px;
 }
 .countdown__lbl{
