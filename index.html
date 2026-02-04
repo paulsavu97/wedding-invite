@@ -3,9 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nuestro gran día</title>
+  <title>Cristina & Santi — 27.06.2026</title>
 
-  <!-- Tipografías opcionales (Google Fonts) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -16,122 +15,165 @@
 <body>
   <header class="topbar">
     <nav class="nav">
+      <a href="#inicio">Inicio</a>
       <a href="#cuenta-atras">Cuenta atrás</a>
-      <a href="#donde">Dónde y cuándo</a>
-      <a href="#alojamiento">Alojamiento</a>
-      <a href="#galeria">Galería</a>
+      <a href="#donde">Ceremonia & celebración</a>
+      <a href="#preboda">Preboda</a>
       <a class="btn" href="#rsvp">Confirmación</a>
     </nav>
   </header>
+
+  <!-- Música -->
+  <audio id="bgMusic" src="assets/audio/cancion.mp3" loop preload="auto"></audio>
+  <button class="music-toggle" id="musicToggle" aria-label="Silenciar música" title="Música">♪</button>
 
   <!-- HERO -->
   <section class="hero" id="inicio">
     <div class="hero__inner">
       <p class="kicker">CRISTINA &amp; SANTI</p>
-      <h1>Nuestro gran día</h1>
+      <h1>Nos casamos</h1>
 
       <div class="hero__photos">
-        <figure class="pill">
-          <img src="assets/img/Siete.jpeg" alt="Foto 2">
+        <figure class="heroPhoto">
+          <img src="assets/img/Siete.jpeg" alt="Cristina y Santi">
         </figure>
       </div>
 
-      <p class="subtitle">Nos hace ilusión celebrarlo contigo.</p>
+      <p class="subtitle">
+        El <strong>27 de junio de 2026</strong> nos damos el “sí, quiero”.
+        <br/>Nos encantará celebrarlo contigo.
+      </p>
 
       <div class="hero__cta">
         <a class="btn" href="#rsvp">Confirmar asistencia</a>
-        <a class="link" href="#cuenta-atras">Ver detalles</a>
+        <a class="link" href="#donde">Ver detalles</a>
       </div>
+
+      <p class="muted tiny heroNote">
+        Si no suena la música, toca una vez la pantalla 😊
+      </p>
     </div>
   </section>
 
-  <!-- CUENTA ATRÁS -->
+  <!-- CUENTA ATRÁS (nuevo estilo) -->
   <section class="section" id="cuenta-atras">
-    <div class="container">
-      <h2>Cuenta atrás</h2>
-      <p class="muted">Estamos deseando disfrutar de ese día con todos vosotros.</p>
+    <div class="container reveal">
+      <h2>Save the Date</h2>
+      <p class="muted">Guárdalo: esto se celebra como se merece.</p>
 
-      <div class="countdown" aria-live="polite">
-        <div class="countdown__cell">
-          <div class="countdown__num" id="dd">—</div>
-          <div class="countdown__lbl">Días</div>
+      <div class="saveCard">
+        <img src="assets/img/save-the-date.svg" alt="Save the Date - 27 Junio 2026">
+      </div>
+
+      <div class="countdown2" aria-live="polite">
+        <div class="cd2__cell">
+          <div class="cd2__num" id="dd">—</div>
+          <div class="cd2__lbl">Días</div>
         </div>
-        <div class="countdown__cell">
-          <div class="countdown__num" id="hh">—</div>
-          <div class="countdown__lbl">Horas</div>
+        <div class="cd2__cell">
+          <div class="cd2__num" id="hh">—</div>
+          <div class="cd2__lbl">Hrs</div>
         </div>
-        <div class="countdown__cell">
-          <div class="countdown__num" id="mm">—</div>
-          <div class="countdown__lbl">Min</div>
+        <div class="cd2__cell">
+          <div class="cd2__num" id="mm">—</div>
+          <div class="cd2__lbl">Mins</div>
         </div>
-        <div class="countdown__cell">
-          <div class="countdown__num" id="ss">—</div>
-          <div class="countdown__lbl">Seg</div>
+        <div class="cd2__cell">
+          <div class="cd2__num" id="ss">—</div>
+          <div class="cd2__lbl">Segs</div>
         </div>
       </div>
 
-      <div class="card note">
-        <p><strong>Fecha:</strong> <span id="prettyDate">—</span></p>
-      </div>
+      <button class="btn btn-save" id="addToCalendar" type="button">GUARDAR FECHA</button>
+
+      <p class="muted tiny" style="margin-top:12px;">
+        <strong>Fecha:</strong> <span id="prettyDate">—</span>
+      </p>
     </div>
   </section>
 
   <!-- DÓNDE Y CUÁNDO -->
-    <section class="section" id="donde">
-    <div class="container">
-        <h2>Dónde y cuándo</h2>
+  <section class="section" id="donde">
+    <div class="container reveal">
+      <h2>Ceremonia &amp; celebración</h2>
+      <p class="muted">Aquí va lo esencial: dónde, cuándo y cómo llegar.</p>
 
-        <div class="grid2">
+      <div class="grid2">
         <div class="card">
-            <h3>⛪ Ceremonia</h3>
-            <p><strong id="ceremonyName">Iglesia Virgen de la Piedad</strong></p>
-            <p class="muted"><strong>Hora:</strong> 13:00</p>
-            <a class="btn small" id="mapsCeremony" target="_blank" rel="noopener">Abrir en Google Maps</a>
+          <h3>⛪ Ceremonia</h3>
+          <p class="muted tiny" style="margin:0 0 10px;">Nos vemos para el “sí, quiero”.</p>
+          <p><strong id="ceremonyName">—</strong></p>
+          <p class="muted"><strong>Hora:</strong> 13:00</p>
+          <a class="btn small" id="mapsCeremony" target="_blank" rel="noopener">Ver ubicación</a>
         </div>
 
         <div class="card">
-            <h3>🥂 Banquete</h3>
-            <p><strong id="banquetName">Finca La Cervalera (Tarancón)</strong></p>
-            <p class="muted" id="banquetAddr">—</p>
-            <a class="btn small" id="mapsBanquet" target="_blank" rel="noopener">Abrir en Google Maps</a>
+          <h3>🥂 Celebración</h3>
+          <p class="muted tiny" style="margin:0 0 10px;">Brindis, comida y fiesta.</p>
+          <p><strong id="banquetName">—</strong></p>
+          <p class="muted" id="banquetAddr">—</p>
+          <a class="btn small" id="mapsBanquet" target="_blank" rel="noopener">Ver ubicación</a>
         </div>
-        </div>
+      </div>
 
-        <div class="card">
+      <div class="card" style="margin-top:14px;">
         <h3>🚌 Transporte</h3>
         <p class="muted">
-            Para organizarnos, en la confirmación puedes indicar si necesitas autobús o vas en coche.
+          Para organizarnos, en la confirmación indica si vienes en coche o si necesitas autobús.
         </p>
-        <a class="btn small ghost" href="#rsvp">Confirmar asistencia</a>
-        </div>
+        <a class="btn small ghost" href="#rsvp">Ir a confirmación</a>
+      </div>
     </div>
-    </section>
+  </section>
+
+  <!-- PREBODA -->
+  <section class="section" id="preboda">
+    <div class="container reveal">
+      <h2>Preboda</h2>
+      <p class="muted">Porque una sola noche se nos queda corta…</p>
+
+      <div class="card note">
+        <h3>🍻 Viernes 26 · Quintanar de la Orden</h3>
+        <p style="margin:10px 0 0;">
+          Nos vemos <strong>por la tarde/noche</strong> para calentar motores, ponernos al día y brindar antes del gran día.
+        </p>
+        <p class="muted" style="margin:10px 0 0;">
+          <strong>Hora:</strong> a partir de <span id="prebodaTime">—</span>
+        </p>
+        <br/>
+        <a class="btn small" id="mapsPreboda" target="_blank" rel="noopener">Ver ubicación</a>
+        <p class="muted tiny" style="margin-top:10px;">
+          *Si vienes, indícalo en la confirmación para contarte los detalles.
+        </p>
+      </div>
+    </div>
+  </section>
 
   <!-- GALERÍA -->
   <section class="section" id="galeria">
-    <div class="container">
+    <div class="container reveal">
       <h2>Galería</h2>
-      <p class="muted">Unas fotos nuestras 🙂</p>
-
+      <p class="muted">Un pedacito de nuestra historia, antes del gran día</p>
       <div class="gallery">
-        <img src="assets/img/Cinco.jpeg" alt="Foto 1">
-        <img src="assets/img/Siete.jpeg" alt="Foto 2">
-        <img src="assets/img/Ocho.jpeg" alt="Foto 3">
-        <img src="assets/img/Uno.jpeg" alt="Foto 4">
+        <img src="assets/img/Cinco.jpeg" alt="Cristina y Santi 1">
+        <img src="assets/img/Cuatro.jpeg" alt="Cristina y Santi 2">
+        <img src="assets/img/Ocho.jpeg" alt="Cristina y Santi 3">
+        <img src="assets/img/Uno.jpeg" alt="Cristina y Santi 4">
       </div>
     </div>
   </section>
 
   <!-- RSVP -->
   <section class="section" id="rsvp">
-    <div class="container">
+    <div class="container reveal">
       <h2>Confirmación</h2>
+      <p class="muted">
+        Para que todo salga redondo, confírmanos si vienes.
+      </p>
 
-      <!-- Opción A (recomendada): Formspree / Getform / etc -->
-      <!-- Sustituye action por tu endpoint -->
       <form class="form card" id="rsvpForm" method="POST" action="https://script.google.com/macros/s/AKfycbyxeyYtucxwy56KPHgN5gx_CVw8nuu0_ilZ1OsDDToy66XPyFIyielN_7zh2dLychlllg/exec">
         <div class="field">
-          <label>Nombre</label>
+          <label>Nombre y apellidos</label>
           <input name="nombre" required />
         </div>
 
@@ -141,12 +183,12 @@
         </div>
 
         <div class="field">
-          <label>Teléfono</label>
+          <label>Teléfono (opcional)</label>
           <input name="telefono" inputmode="tel" />
         </div>
 
         <div class="field">
-          <label>¿Asistirás?</label>
+          <label>¿Nos acompañas?</label>
           <select name="asistencia" required>
             <option value="">Selecciona…</option>
             <option>Sí</option>
@@ -155,51 +197,55 @@
         </div>
 
         <div class="field">
-            <label>Transporte</label>
-            <select name="transporte" required>
+          <label>Transporte</label>
+          <select name="transporte" required>
+            <option value="">Selecciona…</option>
+            <option value="Coche">Iré en coche</option>
+            <option value="Autobús">Necesito autobús</option>
+          </select>
+        </div>
+
+        <div class="field">
+            <label>¿Vendrás con niños?</label>
+            <select name="ninos" id="kidsSelect" required>
                 <option value="">Selecciona…</option>
-                <option value="Coche">Iré en coche</option>
-                <option value="Autobús">Necesito autobús</option>
+                <option value="No">No</option>
+                <option value="Sí">Sí</option>
             </select>
         </div>
 
-        <div class="field">
-          <label>Alergias / intolerancias</label>
-          <input name="alergias" placeholder="Opcional" />
+        <div class="field" id="kidsCountField">
+            <label>¿Cuántos niños?</label>
+            <input name="ninos_cuantos" id="kidsCount" inputmode="numeric" pattern="[0-9]*" placeholder="Ej: 1" />
         </div>
 
         <div class="field">
-          <label>Comentarios</label>
-          <textarea name="comentarios" rows="3" placeholder="Opcional"></textarea>
+          <label>¿Te apuntas a la preboda? (viernes 26)</label>
+          <select name="preboda" required>
+            <option value="">Selecciona…</option>
+            <option value="Sí">Sí</option>
+            <option value="No">No</option>
+            <option value="Quizá">Quizá</option>
+          </select>
         </div>
 
-        <!-- Anti-spam (no tocar) -->
+        <div class="field">
+          <label>Alergias / intolerancias (opcional)</label>
+          <input name="alergias" placeholder="Ej: sin gluten, frutos secos…" />
+        </div>
+
+        <div class="field">
+          <label>Comentarios (opcional)</label>
+          <textarea name="comentarios" rows="3" placeholder="Cualquier cosa que debamos saber 🙂"></textarea>
+        </div>
+
         <input type="text" name="_gotcha" autocomplete="off" tabindex="-1" style="display:none">
-
 
         <button class="btn" type="submit">Enviar confirmación</button>
         <p class="muted tiny" id="formMsg"></p>
       </form>
-
     </div>
   </section>
-
-    <section class="section" id="fotos">
-        <div class="container">
-            <h2>Sube tus fotos</h2>
-            <p class="muted">Ayúdanos a reunir recuerdos del día 😊</p>
-
-            <div class="card">
-            <a class="btn" href="PEGA_AQUI_TU_LINK_DE_DRIVE" target="_blank" rel="noopener">
-                Subir fotos a la carpeta
-            </a>
-            <p class="muted tiny" style="margin-top:10px;">
-                Si el enlace no abre, copia y pega en tu navegador.
-            </p>
-            </div>
-        </div>
-    </section>
-
 
   <footer class="footer">
     <div class="container">

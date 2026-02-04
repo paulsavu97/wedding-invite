@@ -7,6 +7,7 @@
   --accent: #a7a18a;
   --radius: 18px;
   --shadow: 0 18px 40px rgba(0,0,0,.06);
+  --olive: #1f2b16;
 }
 
 *{ box-sizing: border-box; }
@@ -19,12 +20,12 @@ body{
 }
 
 h1,h2,h3{
-  font-family: "Playfair Display", serif;
+  font-family: "Cormorant Garamond", serif;
   letter-spacing: .2px;
   margin: 0 0 .35rem;
 }
-h1{ font-size: clamp(2.2rem, 4vw, 3.1rem); }
-h2{ font-size: clamp(1.8rem, 3vw, 2.3rem); }
+h1{ font-size: clamp(2.3rem, 4vw, 3.25rem); }
+h2{ font-size: clamp(1.85rem, 3vw, 2.4rem); }
 h3{ font-size: 1.35rem; }
 
 .container{
@@ -37,7 +38,7 @@ h3{ font-size: 1.35rem; }
   top: 0;
   z-index: 20;
   backdrop-filter: blur(10px);
-  background: rgba(251,250,246,.7);
+  background: rgba(251,250,246,.75);
   border-bottom: 1px solid var(--line);
 }
 .nav{
@@ -56,49 +57,52 @@ h3{ font-size: 1.35rem; }
 }
 .nav a:hover{ opacity: 1; }
 
-.section{ padding: 70px 0; }
+.section{ padding: 72px 0; }
 
 .hero{
-  padding: 70px 0 40px;
+  padding: 72px 0 44px;
 }
 .hero__inner{
-  width: min(720px, calc(100% - 40px));
+  width: min(740px, calc(100% - 40px));
   margin: 0 auto;
   text-align: center;
 }
 .kicker{
-  font-family: "Libre Baskerville", serif;
-  letter-spacing: .3em;
+  letter-spacing: .34em;
   text-transform: uppercase;
   color: var(--muted);
   margin: 0 0 10px;
+  font-size: 13px;
 }
 .subtitle{
   color: var(--muted);
-  margin: 12px 0 0;
+  margin: 14px 0 0;
+  line-height: 1.5;
 }
+.heroNote{ margin-top: 16px; opacity: .9; }
 
 .hero__photos{
   display:flex;
   justify-content:center;
-  gap: 16px;
-  margin: 26px 0 10px;
-  flex-wrap: wrap;
+  margin: 26px 0 12px;
 }
-.pill{
-  width: 130px;
-  height: 190px;
-  border-radius: 999px;
+
+/* FOTO HERO: cuadrada */
+.heroPhoto{
+  width: min(320px, 86vw);
+  aspect-ratio: 1 / 1;
+  border-radius: 22px;
   overflow: hidden;
   background: #eee;
   box-shadow: var(--shadow);
   border: 1px solid var(--line);
 }
-.pill img{
+.heroPhoto img{
   width: 100%;
   height: 100%;
   object-fit: cover;
   display:block;
+  transform: scale(1.02);
 }
 
 .hero__cta{
@@ -124,13 +128,13 @@ h3{ font-size: 1.35rem; }
   font-weight: 600;
   font-size: 14px;
 }
+
 .btn.small{ padding: 10px 14px; font-size: 13px; }
 .btn.ghost{
   background: transparent;
   color: var(--ink);
   box-shadow: none;
 }
-
 .link{ color: var(--ink); text-decoration: underline; }
 
 .card{
@@ -140,35 +144,10 @@ h3{ font-size: 1.35rem; }
   padding: 18px;
   box-shadow: var(--shadow);
 }
-
 .note{ border-left: 4px solid var(--accent); }
 
 .muted{ color: var(--muted); }
 .tiny{ font-size: 12px; }
-
-.countdown{
-  display:grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
-  margin: 22px 0 18px;
-}
-.countdown__cell{
-  background: rgba(255,255,255,.65);
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 14px 10px;
-}
-.countdown__num{
-  font-family: "Bodoni Moda", serif;
-
-  font-size: 38px;
-}
-.countdown__lbl{
-  color: var(--muted);
-  font-size: 12px;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-}
 
 .grid2{
   display:grid;
@@ -176,7 +155,6 @@ h3{ font-size: 1.35rem; }
   gap: 14px;
   margin-top: 16px;
 }
-.stack{ display:grid; gap: 12px; margin-top: 14px; }
 
 .gallery{
   display:grid;
@@ -205,7 +183,7 @@ input, textarea, select{
   padding: 12px 12px;
   border-radius: 14px;
   border: 1px solid var(--line);
-  background: rgba(255,255,255,.85);
+  background: rgba(255,255,255,.88);
   outline: none;
 }
 input:focus, textarea:focus, select:focus{
@@ -218,7 +196,200 @@ input:focus, textarea:focus, select:focus{
   color: var(--muted);
 }
 
+/* ==== NUEVO BLOQUE CUENTA ATRÁS estilo ejemplo ==== */
+.saveCard{
+  width: min(760px, 100%);
+  margin: 18px auto 14px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 40px rgba(0,0,0,.08);
+  background: #fff;
+}
+.saveCard img{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.countdown2{
+  width: min(760px, 100%);
+  margin: 18px auto 18px;
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  text-align: center;
+}
+
+.cd2__num{
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  color: var(--olive);
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 600;
+  line-height: 1.05;
+}
+.cd2__lbl{
+  margin-top: 6px;
+  color: var(--olive);
+  opacity: .92;
+  font-size: 14px;
+  letter-spacing: .02em;
+}
+
+/* Botón flotante música */
+.music-toggle{
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 50;
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: rgba(255,255,255,.82);
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 40px rgba(0,0,0,.10);
+  cursor: pointer;
+  user-select: none;
+  font-size: 18px;
+  color: var(--ink);
+}
+.music-toggle:hover{ transform: translateY(-1px); }
+.music-toggle:active{ transform: translateY(0); }
+
 @media (max-width: 760px){
   .grid2{ grid-template-columns: 1fr; }
-  .countdown{ grid-template-columns: repeat(2, 1fr); }
+  .countdown2{ grid-template-columns: repeat(2, 1fr); gap: 14px; }
+}
+
+/* =========================
+   Estética pro + cards flotantes
+   ========================= */
+
+/* Fondo un pelín más "premium" */
+body{
+  background:
+    radial-gradient(1200px 600px at 50% -10%, rgba(31,43,22,.08), transparent 60%),
+    linear-gradient(#f8f6ef, var(--bg));
+}
+
+/* Secciones con un poco de “aire” */
+.section{
+  padding: 78px 0;
+}
+
+/* Títulos algo más elegantes */
+h2{
+  letter-spacing: .01em;
+}
+p{
+  line-height: 1.55;
+}
+
+/* Cards: más "glass", sombra más pro y borde sutil */
+.card{
+  background: rgba(255,255,255,.78);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0,0,0,.07);
+  box-shadow:
+    0 24px 60px rgba(0,0,0,.08),
+    0 2px 0 rgba(255,255,255,.6) inset;
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+
+/* Hover: sensación de flotación */
+.card:hover{
+  transform: translateY(-4px);
+  box-shadow:
+    0 34px 80px rgba(0,0,0,.10),
+    0 2px 0 rgba(255,255,255,.65) inset;
+}
+
+/* Save card un pelín más elegante */
+.saveCard{
+  background: rgba(255,255,255,.85);
+  border: 1px solid rgba(0,0,0,.07);
+  box-shadow:
+    0 28px 70px rgba(0,0,0,.10),
+    0 1px 0 rgba(255,255,255,.65) inset;
+}
+
+/* Galería más “premium” */
+.gallery img{
+  transition: transform .35s ease, box-shadow .35s ease;
+  box-shadow: 0 18px 45px rgba(0,0,0,.08);
+}
+.gallery img:hover{
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 28px 65px rgba(0,0,0,.11);
+}
+
+/* Botón: micro interacción */
+.btn{
+  transition: transform .22s ease, box-shadow .22s ease, filter .22s ease;
+}
+.btn:hover{
+  transform: translateY(-1px);
+  filter: brightness(1.02);
+}
+.btn:active{
+  transform: translateY(0);
+}
+
+.btn-save{
+  display: block;
+  width: fit-content;
+  margin: 18px auto 0;
+  padding: 12px 18px;
+  font-size: 14px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  background: var(--olive);
+  border: 1px solid rgba(0,0,0,.18);
+  box-shadow: 0 18px 45px rgba(0,0,0,.16);
+  transition: transform .22s ease, filter .22s ease;
+}
+.btn-save:hover{ transform: translateY(-1px); filter: brightness(1.03); }
+.btn-save:active{ transform: translateY(0); }
+
+#kidsCountField{ display: none; }
+
+/* =========================
+   Animación reveal on scroll
+   ========================= */
+
+.reveal{
+  opacity: 0;
+  transform: translateY(16px);
+  filter: blur(2px);
+  transition:
+    opacity .7s ease,
+    transform .7s cubic-bezier(.2,.8,.2,1),
+    filter .7s ease;
+  transition-delay: var(--d, 0ms);
+  will-change: opacity, transform, filter;
+}
+
+.reveal.is-visible{
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* Stagger para tarjetas dentro de grids */
+.grid2 .card.reveal:nth-child(1){ --d: 60ms; }
+.grid2 .card.reveal:nth-child(2){ --d: 140ms; }
+
+/* Preferencia del usuario: menos movimiento */
+@media (prefers-reduced-motion: reduce){
+  .reveal{
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+  .card, .gallery img, .btn{
+    transition: none !important;
+  }
 }

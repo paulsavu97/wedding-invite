@@ -11,12 +11,32 @@ const WEDDING = {
     name: "Finca La Cervalera (Tarancón)",
     address: "Carretera A-3, km 79, Camino La Cervalera s/n, 16400 Tarancón (Cuenca)",
     mapsUrl: "https://www.google.com/maps/place/Finca+La+Cervalera/@40.0243429,-3.0319603,717m/data=!3m2!1e3!4b1!4m6!3m5!1s0xd4286b351048cb3:0x2abb45ef5ffcded8!8m2!3d40.0243429!4d-3.0319603!16s%2Fg%2F11b638_tz2?entry=ttu&g_ep=EgoyMDI2MDEyOC4wIKXMDSoKLDEwMDc5MjA3M0gBUAM%3D"
+  },
+
+  preboda: {
+    place: "Quintanar de la Orden",
+    timeText: "19:30",
+    mapsUrl: "https://www.google.com/maps?q=Quintanar+de+la+Orden"
   }
 };
 
 // ====== Helpers ======
 const $ = (id) => document.getElementById(id);
 const target = new Date(WEDDING.dateISO);
+
+function pad(n){ return String(n).padStart(2, "0"); }
+
+function toICSDateUTC(date){
+  // YYYYMMDDTHHMMSSZ
+  const d = new Date(date.getTime());
+  const y = d.getUTCFullYear();
+  const m = String(d.getUTCMonth()+1).padStart(2,"0");
+  const da = String(d.getUTCDate()).padStart(2,"0");
+  const h = String(d.getUTCHours()).padStart(2,"0");
+  const mi = String(d.getUTCMinutes()).padStart(2,"0");
+  const s = String(d.getUTCSeconds()).padStart(2,"0");
+  return `${y}${m}${da}T${h}${mi}${s}Z`;
+}
 
 // ====== Maps + textos ======
 const cLink = $("mapsCeremony");
@@ -31,6 +51,12 @@ if (cName) cName.textContent = WEDDING.ceremony.name;
 if (bName) bName.textContent = WEDDING.banquet.name;
 if (bAddr) bAddr.textContent = WEDDING.banquet.address;
 
+// Preboda
+const pLink = $("mapsPreboda");
+const pTime = $("prebodaTime");
+if (pLink) pLink.href = WEDDING.preboda.mapsUrl;
+if (pTime) pTime.textContent = WEDDING.preboda.timeText;
+
 // ====== Fecha bonita ======
 const pretty = new Intl.DateTimeFormat("es-ES", {
   weekday: "long", year: "numeric", month: "long", day: "2-digit",
@@ -41,8 +67,6 @@ const prettyEl = $("prettyDate");
 if (prettyEl) prettyEl.textContent = pretty;
 
 // ====== Countdown ======
-function pad(n){ return String(n).padStart(2, "0"); }
-
 function tick(){
   const now = new Date();
   const diff = target - now;
@@ -64,7 +88,7 @@ function tick(){
   const mins = Math.floor((s % 3600) / 60);
   const secs = s % 60;
 
-  dd.textContent = pad(days);
+  dd.textContent = String(days);
   hh.textContent = pad(hours);
   mm.textContent = pad(mins);
   ss.textContent = pad(secs);
@@ -73,6 +97,118 @@ function tick(){
 tick();
 setInterval(tick, 1000);
 
+// ====== Botón GUARDAR FECHA (descarga ICS) ======
+const addBtn = $("addToCalendar");
+if (addBtn) {
+  addBtn.addEventListener("click", () => {
+    // Duración estimada del evento: 8 horas (ajústalo si quieres)
+    const start = new Date(WEDDING.dateISO);
+    const end = new Date(start.getTime() + 8 * 60 * 60 * 1000);
+
+    const dtstamp = toICSDateUTC(new Date());
+    const dtstart = toICSDateUTC(start);
+    const dtend = toICSDateUTC(end);
+
+    const title = "Boda Cristina & Santi";
+    const location = `${WEDDING.ceremony.name} / ${WEDDING.banquet.name}`;
+    const description = `Ceremonia: ${WEDDING.ceremony.name}\nCelebración: ${WEDDING.banquet.name}\n\n¡Nos encantará verte!`;
+
+    const ics =
+`BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//C&S//Invitacion//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:${dtstart}-cs@invitacion
+DTSTAMP:${dtstamp}
+DTSTART:${dtstart}
+DTEND:${dtend}
+SUMMARY:${title}
+LOCATION:${location}
+DESCRIPTION:${description.replace(/\n/g, "\\n")}
+END:VEVENT
+END:VCALENDAR`;
+
+    const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "save-the-date-cristina-santi.ics";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  });
+}
+
+// ====== Música (loop + botón flotante) ======
+const audio = $("bgMusic");
+const toggle = $("musicToggle");
+
+function setToggleState(isOn){
+  if (!toggle) return;
+  toggle.dataset.on = isOn ? "1" : "0";
+  toggle.textContent = isOn ? "♪" : "🔇";
+  toggle.setAttribute("aria-label", isOn ? "Silenciar música" : "Activar música");
+  toggle.title = isOn ? "Silenciar música" : "Activar música";
+}
+
+async function tryPlay(){
+  if (!audio) return false;
+  try {
+    audio.muted = false;
+    await audio.play();
+    setToggleState(true);
+    return true;
+  } catch {
+    setToggleState(false);
+    return false;
+  }
+}
+
+if (toggle && audio) {
+  toggle.addEventListener("click", async () => {
+    if (audio.paused) await tryPlay();
+    else { audio.pause(); setToggleState(false); }
+  });
+
+  const unlock = async () => {
+    if (!audio.paused) return;
+    const ok = await tryPlay();
+    if (ok) {
+      window.removeEventListener("pointerdown", unlock);
+      window.removeEventListener("touchstart", unlock);
+      window.removeEventListener("keydown", unlock);
+    }
+  };
+
+  window.addEventListener("pointerdown", unlock);
+  window.addEventListener("touchstart", unlock);
+  window.addEventListener("keydown", unlock);
+
+  tryPlay();
+}
+
+// ====== Niños: mostrar/ocultar "¿Cuántos?" ======
+const kidsSelect = document.getElementById("kidsSelect");
+const kidsCountField = document.getElementById("kidsCountField");
+const kidsCount = document.getElementById("kidsCount");
+
+function updateKidsField(){
+  if (!kidsSelect || !kidsCountField) return;
+  const show = kidsSelect.value === "Sí";
+  kidsCountField.style.display = show ? "grid" : "none";
+  if (!show && kidsCount) kidsCount.value = "";
+}
+
+if (kidsSelect) {
+  kidsSelect.addEventListener("change", updateKidsField);
+  updateKidsField();
+}
+
+
 // ====== Form UX (Google Sheets via Apps Script) ======
 const form = $("rsvpForm");
 const msg = $("formMsg");
@@ -80,22 +216,6 @@ const msg = $("formMsg");
 function setDisabled(disabled) {
   const btn = form?.querySelector('button[type="submit"]');
   if (btn) btn.disabled = disabled;
-}
-
-// Mostrar/ocultar "parada_autobus" según transporte
-const transporteSel = document.querySelector('select[name="transporte"]');
-const paradaInput = document.querySelector('input[name="parada_autobus"]');
-const paradaField = paradaInput ? paradaInput.closest(".field") : null;
-
-function updateParadaField(){
-  if (!transporteSel || !paradaField || !paradaInput) return;
-  const isBus = transporteSel.value === "Autobús";
-  paradaField.style.display = isBus ? "grid" : "none";
-  if (!isBus) paradaInput.value = "";
-}
-if (transporteSel) {
-  transporteSel.addEventListener("change", updateParadaField);
-  updateParadaField();
 }
 
 if (form && msg) {
@@ -109,7 +229,6 @@ if (form && msg) {
       const fd = new FormData(form);
       fd.append("user_agent", navigator.userAgent);
 
-      // Convertimos a x-www-form-urlencoded (evita preflight/CORS)
       const body = new URLSearchParams();
       for (const [k, v] of fd.entries()) body.append(k, v);
 
@@ -124,8 +243,8 @@ if (form && msg) {
 
       if (res.ok && (!data || data.ok)) {
         form.reset();
-        updateParadaField();
-        msg.textContent = "¡Gracias! Confirmación enviada.";
+        updateKidsField();
+        msg.textContent = "¡Listo! Hemos recibido tu confirmación. Gracias 🤍";
       } else {
         const errMsg = (data && data.error) ? data.error : "No se pudo enviar. Prueba de nuevo.";
         msg.textContent = errMsg;
@@ -138,4 +257,32 @@ if (form && msg) {
     }
   });
 }
+// ====== Animaciones on-scroll (cards flotantes pro) ======
+(() => {
+  const prefersReduced = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+
+  const items = document.querySelectorAll(".reveal");
+  if (!items.length) return;
+
+  // Si el usuario prefiere menos movimiento, mostramos sin animación
+  if (prefersReduced) {
+    items.forEach(el => el.classList.add("is-visible"));
+    return;
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        io.unobserve(entry.target);
+      }
+    }
+  }, { threshold: 0.14, rootMargin: "0px 0px -10% 0px" });
+
+  items.forEach((el, i) => {
+    // Stagger sutil: cada elemento entra con un delay distinto
+    el.style.setProperty("--d", `${Math.min(i * 70, 420)}ms`);
+    io.observe(el);
+  });
+})();
 

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="780" viewBox="0 0 1200 780">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="45%" r="70%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f1efe8"/>
+    </radialGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="22" stdDeviation="18" flood-color="#000" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- tarjeta -->
+  <rect x="90" y="70" width="1020" height="640" rx="10" fill="url(#bg)" filter="url(#shadow)"/>
+  <rect x="140" y="120" width="920" height="540" rx="6" fill="none" stroke="#2a351d" stroke-opacity="0.35" stroke-width="4"/>
+
+  <!-- texto -->
+  <text x="600" y="260" text-anchor="middle"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="116" fill="#1f2b16" font-style="italic">
+    Save the Date
+  </text>
+
+  <text x="600" y="365" text-anchor="middle"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="60" fill="#1f2b16" opacity="0.95">
+    27 Junio 2026
+  </text>
+
+  <!-- corazón: más pequeño y un poco más abajo -->
+  <g transform="translate(600 535) scale(0.78)" fill="none" stroke="#1f2b16" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity="0.95">
+    <path d="M0 70
+             C -70 10, -120 -20, -120 -70
+             C -120 -120, -75 -150, -30 -135
+             C -12 -128, -5 -116, 0 -104
+             C 5 -116, 12 -128, 30 -135
+             C 75 -150, 120 -120, 120 -70
+             C 120 -20, 70 10, 0 70 Z"/>
+  </g>
+</svg>
