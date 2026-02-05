@@ -38,7 +38,7 @@ p{ line-height: 1.55; }
   margin: 0 auto;
 }
 
-/* ===== TOPBAR / NAV (simple y limpio) ===== */
+/* ===== TOPBAR / NAV ===== */
 .topbar{
   position: sticky;
   top: 0;
@@ -70,14 +70,14 @@ p{ line-height: 1.55; }
 .section{ padding: 78px 0; }
 
 /* ===== HERO ===== */
-.hero{
-  padding: 72px 0 44px;
-}
+.hero{ padding: 72px 0 44px; }
+
 .hero__inner{
   width: min(740px, calc(100% - 40px));
   margin: 0 auto;
   text-align: center;
 }
+
 .kicker{
   letter-spacing: .34em;
   text-transform: uppercase;
@@ -85,22 +85,11 @@ p{ line-height: 1.55; }
   margin: 0 0 10px;
   font-size: 13px;
 }
+
 .subtitle{
   color: var(--muted);
   margin: 14px 0 0;
 }
-
-/* Botón de confirmación en el hero (debajo del nombre) */
-/* .hero__rsvp{
-  margin: 14px auto 10px;
-  padding: 10px 14px;
-  font-size: 13px;
-  letter-spacing: .10em;
-  text-transform: uppercase;
-  background: var(--olive);
-  border: 1px solid rgba(0,0,0,.18);
-  box-shadow: 0 18px 45px rgba(0,0,0,.14);
-} */
 
 /* FOTO HERO: cuadrada */
 .hero__photos{
@@ -108,6 +97,7 @@ p{ line-height: 1.55; }
   justify-content:center;
   margin: 26px 0 12px;
 }
+
 .heroPhoto{
   width: min(320px, 86vw);
   aspect-ratio: 1 / 1;
@@ -119,6 +109,7 @@ p{ line-height: 1.55; }
     0 24px 60px rgba(0,0,0,.10),
     0 2px 0 rgba(255,255,255,.55) inset;
 }
+
 .heroPhoto img{
   width: 100%;
   height: 100%;
@@ -152,15 +143,18 @@ p{ line-height: 1.55; }
   font-size: 14px;
   transition: transform .22s ease, box-shadow .22s ease, filter .22s ease;
 }
+
 .btn:hover{ transform: translateY(-1px); filter: brightness(1.02); }
 .btn:active{ transform: translateY(0); }
 
 .btn.small{ padding: 10px 14px; font-size: 13px; }
+
 .btn.ghost{
   background: transparent;
   color: var(--ink);
   box-shadow: none;
 }
+
 .link{ color: var(--ink); text-decoration: underline; }
 
 /* Botón GUARDAR FECHA */
@@ -175,12 +169,11 @@ p{ line-height: 1.55; }
   background: var(--olive);
   border: 1px solid rgba(0,0,0,.18);
   box-shadow: 0 18px 45px rgba(0,0,0,.16);
-  transition: transform .22s ease, filter .22s ease;
 }
-.btn-save:hover{ transform: translateY(-1px); filter: brightness(1.03); }
-.btn-save:active{ transform: translateY(0); }
 
-/* ===== CARDS (estética pro) ===== */
+.btn-save:hover{ filter: brightness(1.03); }
+
+/* ===== CARDS ===== */
 .card{
   background: rgba(255,255,255,.78);
   backdrop-filter: blur(10px);
@@ -192,12 +185,14 @@ p{ line-height: 1.55; }
     0 2px 0 rgba(255,255,255,.6) inset;
   transition: transform .35s ease, box-shadow .35s ease;
 }
+
 .card:hover{
   transform: translateY(-4px);
   box-shadow:
     0 34px 80px rgba(0,0,0,.10),
     0 2px 0 rgba(255,255,255,.65) inset;
 }
+
 .note{ border-left: 4px solid var(--accent); }
 
 .muted{ color: var(--muted); }
@@ -210,6 +205,7 @@ p{ line-height: 1.55; }
   gap: 14px;
   margin-top: 16px;
 }
+
 @media (max-width: 760px){
   .grid2{ grid-template-columns: 1fr; }
 }
@@ -226,6 +222,7 @@ p{ line-height: 1.55; }
     0 28px 70px rgba(0,0,0,.10),
     0 1px 0 rgba(255,255,255,.65) inset;
 }
+
 .saveCard img{
   width: 100%;
   height: auto;
@@ -240,6 +237,7 @@ p{ line-height: 1.55; }
   gap: 10px;
   text-align: center;
 }
+
 .cd2__num{
   font-size: clamp(2.2rem, 5vw, 3.2rem);
   color: var(--olive);
@@ -247,6 +245,7 @@ p{ line-height: 1.55; }
   font-weight: 600;
   line-height: 1.05;
 }
+
 .cd2__lbl{
   margin-top: 6px;
   color: var(--olive);
@@ -254,6 +253,7 @@ p{ line-height: 1.55; }
   font-size: 14px;
   letter-spacing: .02em;
 }
+
 @media (max-width: 760px){
   .countdown2{ grid-template-columns: repeat(2, 1fr); gap: 14px; }
 }
@@ -265,6 +265,7 @@ p{ line-height: 1.55; }
   gap: 10px;
   margin-top: 16px;
 }
+
 .gallery img{
   width: 100%;
   aspect-ratio: 4 / 3;
@@ -274,6 +275,7 @@ p{ line-height: 1.55; }
   box-shadow: 0 18px 45px rgba(0,0,0,.08);
   transition: transform .35s ease, box-shadow .35s ease;
 }
+
 .gallery img:hover{
   transform: translateY(-3px) scale(1.01);
   box-shadow: 0 28px 65px rgba(0,0,0,.11);
@@ -285,6 +287,7 @@ p{ line-height: 1.55; }
   gap: 12px;
   margin-top: 16px;
 }
+
 .field{ display:grid; gap: 6px; }
 label{ font-size: 13px; color: var(--muted); }
 
@@ -296,6 +299,7 @@ input, textarea, select{
   background: rgba(255,255,255,.88);
   outline: none;
 }
+
 input:focus, textarea:focus, select:focus{
   border-color: rgba(0,0,0,.22);
 }
@@ -322,6 +326,7 @@ input:focus, textarea:focus, select:focus{
   transition-delay: var(--d, 0ms);
   will-change: opacity, transform, filter;
 }
+
 .reveal.is-visible{
   opacity: 1;
   transform: translateY(0);
