@@ -12,11 +12,14 @@
 
 *{ box-sizing: border-box; }
 html{ scroll-behavior: smooth; }
+
 body{
   margin:0;
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   color: var(--ink);
-  background: linear-gradient(#f8f6ef, var(--bg));
+  background:
+    radial-gradient(1200px 600px at 50% -10%, rgba(31,43,22,.08), transparent 60%),
+    linear-gradient(#f8f6ef, var(--bg));
 }
 
 h1,h2,h3{
@@ -25,40 +28,48 @@ h1,h2,h3{
   margin: 0 0 .35rem;
 }
 h1{ font-size: clamp(2.3rem, 4vw, 3.25rem); }
-h2{ font-size: clamp(1.85rem, 3vw, 2.4rem); }
+h2{ font-size: clamp(1.85rem, 3vw, 2.4rem); letter-spacing: .01em; }
 h3{ font-size: 1.35rem; }
+
+p{ line-height: 1.55; }
 
 .container{
   width: min(980px, calc(100% - 40px));
   margin: 0 auto;
 }
 
+/* ===== TOPBAR / NAV (simple y limpio) ===== */
 .topbar{
   position: sticky;
   top: 0;
   z-index: 20;
   backdrop-filter: blur(10px);
-  background: rgba(251,250,246,.75);
+  background: rgba(251,250,246,.86);
   border-bottom: 1px solid var(--line);
 }
+
 .nav{
   display:flex;
-  gap: 14px;
+  gap: 16px;
   align-items:center;
   justify-content:center;
-  padding: 12px 10px;
+  padding: 12px 12px;
   flex-wrap: wrap;
 }
+
 .nav a{
   text-decoration:none;
   color: var(--ink);
   font-size: 14px;
-  opacity: .9;
+  opacity: .92;
+  white-space: nowrap;
 }
 .nav a:hover{ opacity: 1; }
 
-.section{ padding: 72px 0; }
+/* ===== SECCIONES ===== */
+.section{ padding: 78px 0; }
 
+/* ===== HERO ===== */
 .hero{
   padding: 72px 0 44px;
 }
@@ -77,25 +88,36 @@ h3{ font-size: 1.35rem; }
 .subtitle{
   color: var(--muted);
   margin: 14px 0 0;
-  line-height: 1.5;
 }
-.heroNote{ margin-top: 16px; opacity: .9; }
 
+/* Botón de confirmación en el hero (debajo del nombre) */
+/* .hero__rsvp{
+  margin: 14px auto 10px;
+  padding: 10px 14px;
+  font-size: 13px;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+  background: var(--olive);
+  border: 1px solid rgba(0,0,0,.18);
+  box-shadow: 0 18px 45px rgba(0,0,0,.14);
+} */
+
+/* FOTO HERO: cuadrada */
 .hero__photos{
   display:flex;
   justify-content:center;
   margin: 26px 0 12px;
 }
-
-/* FOTO HERO: cuadrada */
 .heroPhoto{
   width: min(320px, 86vw);
   aspect-ratio: 1 / 1;
   border-radius: 22px;
   overflow: hidden;
   background: #eee;
-  box-shadow: var(--shadow);
-  border: 1px solid var(--line);
+  border: 1px solid rgba(0,0,0,.08);
+  box-shadow:
+    0 24px 60px rgba(0,0,0,.10),
+    0 2px 0 rgba(255,255,255,.55) inset;
 }
 .heroPhoto img{
   width: 100%;
@@ -114,6 +136,7 @@ h3{ font-size: 1.35rem; }
   flex-wrap: wrap;
 }
 
+/* ===== BOTONES ===== */
 .btn{
   display:inline-flex;
   align-items:center;
@@ -127,7 +150,10 @@ h3{ font-size: 1.35rem; }
   box-shadow: 0 10px 22px rgba(0,0,0,.10);
   font-weight: 600;
   font-size: 14px;
+  transition: transform .22s ease, box-shadow .22s ease, filter .22s ease;
 }
+.btn:hover{ transform: translateY(-1px); filter: brightness(1.02); }
+.btn:active{ transform: translateY(0); }
 
 .btn.small{ padding: 10px 14px; font-size: 13px; }
 .btn.ghost{
@@ -137,184 +163,7 @@ h3{ font-size: 1.35rem; }
 }
 .link{ color: var(--ink); text-decoration: underline; }
 
-.card{
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 18px;
-  box-shadow: var(--shadow);
-}
-.note{ border-left: 4px solid var(--accent); }
-
-.muted{ color: var(--muted); }
-.tiny{ font-size: 12px; }
-
-.grid2{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin-top: 16px;
-}
-
-.gallery{
-  display:grid;
-  grid-template-columns: repeat(2, minmax(0,1fr));
-  gap: 10px;
-  margin-top: 16px;
-}
-.gallery img{
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  border-radius: 16px;
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow);
-}
-
-.form{
-  display:grid;
-  gap: 12px;
-  margin-top: 16px;
-}
-.field{ display:grid; gap: 6px; }
-label{ font-size: 13px; color: var(--muted); }
-input, textarea, select{
-  width: 100%;
-  padding: 12px 12px;
-  border-radius: 14px;
-  border: 1px solid var(--line);
-  background: rgba(255,255,255,.88);
-  outline: none;
-}
-input:focus, textarea:focus, select:focus{
-  border-color: rgba(0,0,0,.25);
-}
-
-.footer{
-  padding: 40px 0 60px;
-  text-align:center;
-  color: var(--muted);
-}
-
-/* ==== NUEVO BLOQUE CUENTA ATRÁS estilo ejemplo ==== */
-.saveCard{
-  width: min(760px, 100%);
-  margin: 18px auto 14px;
-  border-radius: 18px;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  box-shadow: 0 18px 40px rgba(0,0,0,.08);
-  background: #fff;
-}
-.saveCard img{
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.countdown2{
-  width: min(760px, 100%);
-  margin: 18px auto 18px;
-  display:grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  text-align: center;
-}
-
-.cd2__num{
-  font-size: clamp(2.2rem, 5vw, 3.2rem);
-  color: var(--olive);
-  font-family: "Cormorant Garamond", serif;
-  font-weight: 600;
-  line-height: 1.05;
-}
-.cd2__lbl{
-  margin-top: 6px;
-  color: var(--olive);
-  opacity: .92;
-  font-size: 14px;
-  letter-spacing: .02em;
-}
-
-@media (max-width: 760px){
-  .grid2{ grid-template-columns: 1fr; }
-  .countdown2{ grid-template-columns: repeat(2, 1fr); gap: 14px; }
-}
-
-/* =========================
-   Estética pro + cards flotantes
-   ========================= */
-
-/* Fondo un pelín más "premium" */
-body{
-  background:
-    radial-gradient(1200px 600px at 50% -10%, rgba(31,43,22,.08), transparent 60%),
-    linear-gradient(#f8f6ef, var(--bg));
-}
-
-/* Secciones con un poco de “aire” */
-.section{
-  padding: 78px 0;
-}
-
-/* Títulos algo más elegantes */
-h2{
-  letter-spacing: .01em;
-}
-p{
-  line-height: 1.55;
-}
-
-/* Cards: más "glass", sombra más pro y borde sutil */
-.card{
-  background: rgba(255,255,255,.78);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(0,0,0,.07);
-  box-shadow:
-    0 24px 60px rgba(0,0,0,.08),
-    0 2px 0 rgba(255,255,255,.6) inset;
-  transition: transform .35s ease, box-shadow .35s ease;
-}
-
-/* Hover: sensación de flotación */
-.card:hover{
-  transform: translateY(-4px);
-  box-shadow:
-    0 34px 80px rgba(0,0,0,.10),
-    0 2px 0 rgba(255,255,255,.65) inset;
-}
-
-/* Save card un pelín más elegante */
-.saveCard{
-  background: rgba(255,255,255,.85);
-  border: 1px solid rgba(0,0,0,.07);
-  box-shadow:
-    0 28px 70px rgba(0,0,0,.10),
-    0 1px 0 rgba(255,255,255,.65) inset;
-}
-
-/* Galería más “premium” */
-.gallery img{
-  transition: transform .35s ease, box-shadow .35s ease;
-  box-shadow: 0 18px 45px rgba(0,0,0,.08);
-}
-.gallery img:hover{
-  transform: translateY(-3px) scale(1.01);
-  box-shadow: 0 28px 65px rgba(0,0,0,.11);
-}
-
-/* Botón: micro interacción */
-.btn{
-  transition: transform .22s ease, box-shadow .22s ease, filter .22s ease;
-}
-.btn:hover{
-  transform: translateY(-1px);
-  filter: brightness(1.02);
-}
-.btn:active{
-  transform: translateY(0);
-}
-
+/* Botón GUARDAR FECHA */
 .btn-save{
   display: block;
   width: fit-content;
@@ -331,12 +180,137 @@ p{
 .btn-save:hover{ transform: translateY(-1px); filter: brightness(1.03); }
 .btn-save:active{ transform: translateY(0); }
 
+/* ===== CARDS (estética pro) ===== */
+.card{
+  background: rgba(255,255,255,.78);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0,0,0,.07);
+  border-radius: var(--radius);
+  padding: 18px;
+  box-shadow:
+    0 24px 60px rgba(0,0,0,.08),
+    0 2px 0 rgba(255,255,255,.6) inset;
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+.card:hover{
+  transform: translateY(-4px);
+  box-shadow:
+    0 34px 80px rgba(0,0,0,.10),
+    0 2px 0 rgba(255,255,255,.65) inset;
+}
+.note{ border-left: 4px solid var(--accent); }
+
+.muted{ color: var(--muted); }
+.tiny{ font-size: 12px; }
+
+/* ===== GRIDS ===== */
+.grid2{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 16px;
+}
+@media (max-width: 760px){
+  .grid2{ grid-template-columns: 1fr; }
+}
+
+/* ===== CUENTA ATRÁS ===== */
+.saveCard{
+  width: min(760px, 100%);
+  margin: 18px auto 14px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: rgba(255,255,255,.85);
+  border: 1px solid rgba(0,0,0,.07);
+  box-shadow:
+    0 28px 70px rgba(0,0,0,.10),
+    0 1px 0 rgba(255,255,255,.65) inset;
+}
+.saveCard img{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.countdown2{
+  width: min(760px, 100%);
+  margin: 18px auto 18px;
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  text-align: center;
+}
+.cd2__num{
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  color: var(--olive);
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 600;
+  line-height: 1.05;
+}
+.cd2__lbl{
+  margin-top: 6px;
+  color: var(--olive);
+  opacity: .92;
+  font-size: 14px;
+  letter-spacing: .02em;
+}
+@media (max-width: 760px){
+  .countdown2{ grid-template-columns: repeat(2, 1fr); gap: 14px; }
+}
+
+/* ===== GALERÍA ===== */
+.gallery{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 10px;
+  margin-top: 16px;
+}
+.gallery img{
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,.07);
+  box-shadow: 0 18px 45px rgba(0,0,0,.08);
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+.gallery img:hover{
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 28px 65px rgba(0,0,0,.11);
+}
+
+/* ===== FORM ===== */
+.form{
+  display:grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+.field{ display:grid; gap: 6px; }
+label{ font-size: 13px; color: var(--muted); }
+
+input, textarea, select{
+  width: 100%;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,.08);
+  background: rgba(255,255,255,.88);
+  outline: none;
+}
+input:focus, textarea:focus, select:focus{
+  border-color: rgba(0,0,0,.22);
+}
+
+/* Campo condicional niños */
 #kidsCountField{ display: none; }
 
-/* =========================
-   Animación reveal on scroll
-   ========================= */
+/* ===== FOOTER ===== */
+.footer{
+  padding: 40px 0 60px;
+  text-align:center;
+  color: var(--muted);
+}
 
+/* ===== REVEAL ON SCROLL ===== */
 .reveal{
   opacity: 0;
   transform: translateY(16px);
@@ -348,18 +322,12 @@ p{
   transition-delay: var(--d, 0ms);
   will-change: opacity, transform, filter;
 }
-
 .reveal.is-visible{
   opacity: 1;
   transform: translateY(0);
   filter: blur(0);
 }
 
-/* Stagger para tarjetas dentro de grids */
-.grid2 .card.reveal:nth-child(1){ --d: 60ms; }
-.grid2 .card.reveal:nth-child(2){ --d: 140ms; }
-
-/* Preferencia del usuario: menos movimiento */
 @media (prefers-reduced-motion: reduce){
   .reveal{
     opacity: 1 !important;
