@@ -161,7 +161,12 @@
         Para que todo salga redondo, confírmanos si vienes.
       </p>
 
-      <form class="form card" id="rsvpForm" method="POST" action="https://script.google.com/macros/s/AKfycbyxeyYtucxwy56KPHgN5gx_CVw8nuu0_ilZ1OsDDToy66XPyFIyielN_7zh2dLychlllg/exec">
+      <form
+        class="form card"
+        id="rsvpForm"
+        method="POST"
+        target="rsvp_iframe"
+        action="https://script.google.com/macros/s/AKfycbzAUrHgAwK6KHGdSAykcrsbuId7YQSf6kdiBvH0zu3_A3mutPuBSklIBQHo8VQx_zMizA/exec">
         <div class="field">
           <label>Nombre y apellidos</label>
           <input name="nombre" required />
@@ -234,6 +239,7 @@
         <button class="btn" type="submit">Enviar confirmación</button>
         <p class="muted tiny" id="formMsg"></p>
       </form>
+      <iframe name="rsvp_iframe" id="rsvp_iframe" style="display:none;"></iframe>
     </div>
   </section>
 

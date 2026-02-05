@@ -161,54 +161,43 @@ if (kidsSelect) {
 }
 
 
-// ====== Form UX (Google Sheets via Apps Script) ======
-const form = $("rsvpForm");
-const msg = $("formMsg");
+// ====== Form UX (Apps Script vía iframe, sin CORS) ======
+const form = document.getElementById("rsvpForm");
+const msg = document.getElementById("formMsg");
+const iframe = document.getElementById("rsvp_iframe");
 
 function setDisabled(disabled) {
   const btn = form?.querySelector('button[type="submit"]');
   if (btn) btn.disabled = disabled;
 }
 
-if (form && msg) {
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
+if (form && msg && iframe) {
+  form.addEventListener("submit", () => {
     msg.textContent = "Enviando…";
     setDisabled(true);
 
-    try {
-      const fd = new FormData(form);
-      fd.append("user_agent", navigator.userAgent);
-
-      const body = new URLSearchParams();
-      for (const [k, v] of fd.entries()) body.append(k, v);
-
-      const res = await fetch(form.action, {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
-        body
-      });
-
-      let data = null;
-      try { data = await res.json(); } catch {}
-
-      if (res.ok && (!data || data.ok)) {
-        form.reset();
-        updateKidsField();
-        msg.textContent = "¡Listo! Hemos recibido tu confirmación. Gracias 🤍";
-      } else {
-        const errMsg = (data && data.error) ? data.error : "No se pudo enviar. Prueba de nuevo.";
-        msg.textContent = errMsg;
-      }
-
-    } catch (err) {
-      msg.textContent = "Error de red. Inténtalo otra vez.";
-    } finally {
-      setDisabled(false);
+    // añade user_agent como campo oculto real (Apps Script lo recibirá)
+    let ua = form.querySelector('input[name="user_agent"]');
+    if (!ua) {
+      ua = document.createElement("input");
+      ua.type = "hidden";
+      ua.name = "user_agent";
+      form.appendChild(ua);
     }
+    ua.value = navigator.userAgent;
+  });
+
+  iframe.addEventListener("load", () => {
+    // Si llega aquí, el POST ya se envió (y normalmente se guardó)
+    form.reset();
+    // si tienes la función updateKidsField, llámala:
+    if (typeof updateKidsField === "function") updateKidsField();
+
+    msg.textContent = "¡Listo! Hemos recibido tu confirmación. Gracias 🤍";
+    setDisabled(false);
   });
 }
+
 // ====== Animaciones on-scroll (cards flotantes pro) ======
 (() => {
   const prefersReduced = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
