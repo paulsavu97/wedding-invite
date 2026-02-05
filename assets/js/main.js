@@ -143,54 +143,6 @@ END:VCALENDAR`;
   });
 }
 
-// ====== Música (loop + botón flotante) ======
-const audio = $("bgMusic");
-const toggle = $("musicToggle");
-
-function setToggleState(isOn){
-  if (!toggle) return;
-  toggle.dataset.on = isOn ? "1" : "0";
-  toggle.textContent = isOn ? "♪" : "🔇";
-  toggle.setAttribute("aria-label", isOn ? "Silenciar música" : "Activar música");
-  toggle.title = isOn ? "Silenciar música" : "Activar música";
-}
-
-async function tryPlay(){
-  if (!audio) return false;
-  try {
-    audio.muted = false;
-    await audio.play();
-    setToggleState(true);
-    return true;
-  } catch {
-    setToggleState(false);
-    return false;
-  }
-}
-
-if (toggle && audio) {
-  toggle.addEventListener("click", async () => {
-    if (audio.paused) await tryPlay();
-    else { audio.pause(); setToggleState(false); }
-  });
-
-  const unlock = async () => {
-    if (!audio.paused) return;
-    const ok = await tryPlay();
-    if (ok) {
-      window.removeEventListener("pointerdown", unlock);
-      window.removeEventListener("touchstart", unlock);
-      window.removeEventListener("keydown", unlock);
-    }
-  };
-
-  window.addEventListener("pointerdown", unlock);
-  window.addEventListener("touchstart", unlock);
-  window.addEventListener("keydown", unlock);
-
-  tryPlay();
-}
-
 // ====== Niños: mostrar/ocultar "¿Cuántos?" ======
 const kidsSelect = document.getElementById("kidsSelect");
 const kidsCountField = document.getElementById("kidsCountField");
