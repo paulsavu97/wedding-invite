@@ -28,7 +28,7 @@ h1,h2,h3{
   margin: 0 0 .35rem;
 }
 h1{ font-size: clamp(2.3rem, 4vw, 3.25rem); }
-h2{ font-size: clamp(1.85rem, 3vw, 2.4rem); letter-spacing: .01em; }
+h2{ font-size: clamp(2.05rem, 3.2vw, 2.65rem); letter-spacing: .01em; }
 h3{ font-size: 1.35rem; }
 
 p{ line-height: 1.55; }
@@ -320,6 +320,16 @@ input:focus, textarea:focus, select:focus{
   text-align:center;
   color: var(--muted);
 }
+
+.saveLead{
+  text-align: center;
+  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+  margin: 0 0 14px;
+}
+.saveLead strong{
+  font-weight: 700;
+}
+
 
 /* ===== REVEAL ON SCROLL ===== */
 .reveal{
